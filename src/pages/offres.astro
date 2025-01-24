@@ -51,10 +51,16 @@ const offres = [
             <span x-show="!showFavorites">Afficher tout</span>
         </button>
 
-        <div x-show="showFavorites">
+        <div
+            x-show="showFavorites"
+            x-transition.duration.500ms
+        >
             {offres.map((offre) => <Card {...offre} />)}
         </div>
-        <div x-show="!showFavorites">
+        <div
+            x-show="!showFavorites"
+            x-transition.duration.500ms
+        >
             {offres.map((offre) => offre.favori && <Card {...offre} />)}
         </div>
     </div>
