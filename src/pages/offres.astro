@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Card from "../components/Card.astro";
-import { allMaisons, getOffres } from "../backend.mjs";
+import { allMaisons } from "../backend.mjs";
 const offres = await allMaisons();
 ---
 
@@ -21,7 +21,7 @@ const offres = await allMaisons();
             {offres.map((offre) => <Card {...offre} />)}
         </div>
         <div x-show="!showFavorites" x-transition.duration.500ms>
-            {offres.map((offre) => offre.favori && <Card {...offre} />)}
+            {offres.map((offre) => offre.Favori && <Card {...offre} />)}
         </div>
     </div>
 </Base>

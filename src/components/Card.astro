@@ -2,7 +2,7 @@
 const { ...offres } = Astro.props;
 ---
 
-<div class="flex-col p-8 pb-4 pt-4">
+<div class="flex p-8 pb-4 pt-4">
     {
         (
             <ul class="p-5 border border-gray-300 rounded-lg shadow-lg font-size-xl justify-center">
@@ -14,8 +14,7 @@ const { ...offres } = Astro.props;
                 <li>{offres.Superficie} m²</li>
                 <li>{offres.Prix} €</li>
                 <li class="uppercase">{offres.Favori}</li>
-                <li>{offres.Images}</li>
-                <img src={offres.imageUrl} alt="" />
+                <img src={offres.imageUrl} alt=""/>
             </ul>
         )
     }
