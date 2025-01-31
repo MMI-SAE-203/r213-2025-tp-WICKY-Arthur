@@ -6,17 +6,24 @@ export async function getOffres() {
     let data = await pb.collection('Maison').getFullList({
         sort: '-created',
     });
-    data = data.map((maison) => {
-        maison.imageUrl = pb.files.getURL(maison, maison.Images);
-        return maison;
-    });
+    // data = data.map((maison) => {
+    //     maison.imageUrl = pb.files.getURL(maison, maison.Images);
+    //     return maison;
+    // });
     return data;
 }
 
+
 export async function allMaisons() {
-    const records = await pb.collection('Maison').getFullList();
+    let records = await pb.collection('Maison').getFullList();
+    records = records.map((maison) => {
+        maison.imageUrl = pb.files.getURL(maison, maison.Images);
+        return maison;
+    });
     return records;
 }
+
+/* 
 
 export async function oneID(id) {
     const oneRecord = await pb.collection('Maison').getOne(id);
@@ -47,3 +54,4 @@ export async function getAgent(id) {
     const agentinfo = await pb.collection('Agent').getOne(id);
     return agentinfo;
 }
+ */

@@ -1,15 +1,15 @@
 ---
 import Base from "../layouts/Base.astro";
 import Card from "../components/Card.astro";
-import { getOffres } from "../backend.mjs";
-const offres = await getOffres();
+import { allMaisons, getOffres } from "../backend.mjs";
+const offres = await allMaisons();
 ---
 
 <Base titre="Offres">
     <h1 class="p-10 font-bold text-5xl text-center uppercase text-gray-800">
         Offres
     </h1>
-    <div x-data="{ showFavorites: false }">
+    <div x-data="{ showFavorites: true }">
         <button
             class="p-4 bg-gray-800 ml-8 rounded-2xl text-white font-semibold"
             @click="showFavorites = !showFavorites"
