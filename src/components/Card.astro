@@ -1,19 +1,21 @@
 ---
-const { ...offre } = Astro.props;
+const { ...offres } = Astro.props;
 ---
 
 <div class="flex-col p-8 pb-4 pt-4">
     {
         (
             <ul class="p-5 border border-gray-300 rounded-lg shadow-lg font-size-xl justify-center">
-                <li>{offre.nomMaison}</li>
-                <li>{offre.adresse}</li>
-                <li>{offre.id}</li>
-                <li>{offre.nbChambres} chambres</li>
-                <li>{offre.nbSdb} salles de bain</li>
-                <li>{offre.surface} m²</li>
-                <li>{offre.prix} €</li>
-                <li class="uppercase">{offre.favori}</li>
+                <li>{offres.Nom}</li>
+                <li>{offres.Adresse}</li>
+                <li>{offres.id}</li>
+                <li>{offres.Nombre_de_chambres} chambres</li>
+                <li>{offres.Nombre_de_salles_de_bain} salles de bain</li>
+                <li>{offres.Superficie} m²</li>
+                <li>{offres.Prix} €</li>
+                <li class="uppercase">{offres.Favori}</li>
+                <li>{offres.Images}</li>
+                <img src={offres.imageUrl} alt="" />
             </ul>
         )
     }
