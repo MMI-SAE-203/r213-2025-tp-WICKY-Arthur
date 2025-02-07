@@ -9,7 +9,7 @@ const offres = await allMaisons();
     <h1 class="p-10 font-bold text-5xl text-center uppercase text-gray-800">
         Offres
     </h1>
-    <div x-data="{ showFavorites: true }">
+    <div x-data="{ showFavorites: true, col: true }">
         <button
             class="p-4 bg-gray-800 ml-8 rounded-2xl text-white font-semibold"
             @click="showFavorites = !showFavorites"
@@ -17,6 +17,14 @@ const offres = await allMaisons();
             <span x-show="showFavorites">Afficher les favoris</span>
             <span x-show="!showFavorites">Afficher tout</span>
         </button>
+        <button
+            class="p-4 bg-gray-800 ml-8 rounded-2xl text-white font-semibold relative flex-row"
+            @click="col = !col"
+        >
+            <span x-show="col">Afficher en colonne</span>
+            <span x-show="!col">Afficher en liste</span>
+        </button>
+
         <div x-show="showFavorites" x-transition.duration.500ms>
             {offres.map((offre) => <Card {...offre} />)}
         </div>
