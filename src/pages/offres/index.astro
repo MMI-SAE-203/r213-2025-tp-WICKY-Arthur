@@ -31,5 +31,26 @@ const offres = await allMaisons();
         <div x-show="!showFavorites" x-transition.duration.500ms>
             {offres.map((offre) => offre.Favori && <Card {...offre} />)}
         </div>
+        <button
+            class="relative p-4 m-8 bg-slate-300 rounded-xl
+                        font-semibold"
+            ><a href={`/offres/surface/${80}`}
+                >Maisons avec une superficie supérieur à 80m²
+            </a></button
+        >
+        <button
+            class="relative p-4 m-8 bg-slate-300 rounded-xl
+                        font-semibold"
+            ><a href={`/offres/prix/${4000}`}
+                >Maisons inférieures à 4000€
+            </a></button
+        >
+        <button
+            class="relative p-4 m-8 bg-slate-300 rounded-xl
+                        font-semibold"
+            ><a href={`/offres/price/${4000}_${5000}`}
+                >Maisons comprises entre 3000€ et 4000€
+            </a></button
+        >
     </div>
 </Base>

@@ -34,6 +34,22 @@ export async function getOffre(id) {
     }
 }
 
+export async function bySurface(surface) {
+    const supsurface = await pb.collection('Maison').getFullList({ filter: `Superficie > ${surface}` });
+    return supsurface;
+}
+
+export async function infPrice(p) {
+    const inferiorPrice = await pb.collection('Maison').getFullList({ filter: `Prix < ${p}` });
+    return inferiorPrice;
+}
+
+export async function inBetweenPrice(p1, p2) {
+    const inbetweenPrice = await pb.collection('Maison').getFullList({ filter: `Prix > ${p1} && Prix<${p2}` });
+    return inbetweenPrice;
+}
+
+
 /* 
 
 export async function oneID(id) {

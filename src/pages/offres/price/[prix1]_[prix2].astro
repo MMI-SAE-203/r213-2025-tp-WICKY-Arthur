@@ -1,0 +1,18 @@
+---
+import { inBetweenPrice } from "../../../backend.mjs";
+import Base from "../../../layouts/Base.astro";
+import Card from "../../../components/Card.astro";
+
+const { prix1, prix2 } = Astro.params;
+const offres = await inBetweenPrice(prix1, prix2);
+if (!offres) {
+    return Astro.redirect("/offres");
+}
+---
+
+<Base>
+    <h1 class="p-8 font-bold text-xl">Maisons comprises entre {prix1}€ & {prix2}€</h1>
+    <div class="flex flex-wrap pb-8">
+        {offres.map((offre) => <Card {...offre} />)}
+    </div>
+</Base>

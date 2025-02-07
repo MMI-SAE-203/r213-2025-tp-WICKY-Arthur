@@ -1,18 +1,28 @@
 ---
-import { getOffre } from '../../backend.mjs';
-import Base  from '../../layouts/Base.astro';
+import { getOffre } from "../../backend.mjs";
+import Base from "../../layouts/Base.astro";
 
 const { id } = Astro.params;
 const offre = await getOffre(id);
-if(!offre){
-   return Astro.redirect('/offres');
+if (!offre) {
+    return Astro.redirect("/offres");
 }
 ---
 
 <Base titre={offre.Nom}>
-    <h2>{offre.Nom}</h2>
-    <ul>
-        <li>{offre.Adresse}</li>
-        ...
-    </ul>
+    <h2 class="p-8 text-3xl pb-4 pl-9">{offre.Nom}</h2>
+    <div class="flex p-8 pb-8 pt-4">
+        <ul
+            class="p-5 border border-gray-300 rounded-lg shadow-lg font-size-xl justify-center"
+        >
+            <li>{offre.Adresse}</li>
+            <li>{offre.id}</li>
+            <li>{offre.Nombre_de_chambres} chambres</li>
+            <li>{offre.Nombre_de_salles_de_bain} salles de bain</li>
+            <li>{offre.Superficie} m²</li>
+            <li>{offre.Prix} €</li>
+            <li class="uppercase">{offre.Favori}</li>
+            <img src={offre.imageUrl} alt="" />
+        </ul>
+    </div>
 </Base>
