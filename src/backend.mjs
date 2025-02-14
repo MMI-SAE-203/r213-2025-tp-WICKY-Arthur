@@ -2,14 +2,15 @@ import PocketBase from 'pocketbase';
 const pb = new PocketBase('http://127.0.0.1:8090');
 
 export async function getOffres() {
+    console.log('getOffres');
 
-    let data = await pb.collection('Maison').getFullList({
+    let data = await pb.collection('Maison').getFullList(/* {
         sort: '-created',
+    } */);
+    data = data.map((maison) => {
+        maison.imageUrl = pb.files.getURL(maison, maison.Images);
+        return maison;
     });
-    // data = data.map((maison) => {
-    //     maison.imageUrl = pb.files.getURL(maison, maison.Images);
-    //     return maison;
-    // });
     return data;
 }
 
@@ -96,5 +97,23 @@ export async function addOffre(house) {
             success: false,
             message: 'Une erreur est survenue en ajoutant la maison'
         };
+    }
+}
+
+export async function filterByPrix(prixMin, prixMax) {
+    console.log('prixMin', prixMin);
+    try {
+        let data = await pb.collection('Maison').getFullList({
+            // sort: '-created',
+            filter: `Prix >= ${prixMin} && Prix <= ${prixMax}`
+        });
+        data = data.map((maison) => {
+            maison.imageUrl = pb.files.getURL(maison, maison.Images);
+            return maison;
+        });
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en filtrant la liste des maisons', error);
+        return [];
     }
 }
