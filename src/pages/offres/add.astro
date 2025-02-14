@@ -10,29 +10,49 @@ if (Astro.request.method === "POST") {
 ---
 
 <Base>
-    <h1 class="text-lg">Ajouter une offre</h1>
-    <form class="flex flex-col gap-3" action="/offres/add" method="POST" enctype="multipart/form-data">
-        <input
-            type="text"
-            name="Nom"
-            placeholder="Nom de la maison"
-            required
-            class="w-full mt-2 p-2 border border-gray-300 rounded-md"
-        />
-        <input type="number" name="Prix" placeholder="Prix" />
-        <input
-            type="number"
-            name="Nombre_de_salles_de_bain"
-            placeholder="Nombre de salles de bain"
-        />
-        <input
-            type="number"
-            name="Nombre_de_chambres"
-            placeholder="Nombre de chambres"
-        />
-        <input type="number" name="Superficie" placeholder="Superficie" />
-        <input type="file" name="Images" />
-        <button type="submit">Ajouter</button>
-    </form>
-    <p>{message}</p>
+    <h1 class="text-xl p-6 pb-2 font-semibold ">Ajouter une offre</h1>
+    <div class="p-6 pt-3">
+        <form
+            class="flex flex-col gap-3"
+            action="/offres/add"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+            <input
+                class="p-2 border border-gray-300 rounded-md"
+                type="text"
+                name="Nom"
+                placeholder="Nom de la maison"
+                required
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md"
+            />
+            <input
+                class="p-2 border border-gray-300 rounded-md"
+                type="number"
+                name="Prix"
+                placeholder="Prix"
+            />
+            <input
+                class="p-2 border border-gray-300 rounded-md"
+                type="number"
+                name="Nombre_de_salles_de_bain"
+                placeholder="Nombre de salles de bain"
+            />
+            <input
+                class="p-2 border border-gray-300 rounded-md"
+                type="number"
+                name="Nombre_de_chambres"
+                placeholder="Nombre de chambres"
+            />
+            <input
+                class="p-2 border border-gray-300 rounded-md"
+                type="number"
+                name="Superficie"
+                placeholder="Superficie"
+            />
+            <input type="file" name="Images" />
+            <button class="py-3 border bg-slate-500 rounded-lg text-white font-semibold " type="submit">Ajouter</button>
+        </form>
+    </div>
+    <p class="p-6 pt-3 text-sky-300 font-semibold">{message}</p>
 </Base>

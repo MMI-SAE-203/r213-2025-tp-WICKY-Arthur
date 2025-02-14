@@ -33,9 +33,23 @@ if (Astro.request.method === "POST") {
     </h1>
     <div class="p-4">
         <form class="flex gap-4" action="/offres" method="POST">
-            <input class="p-2 border border-slate-300" type="number" name="minPrix" placeholder="Prix minimum" />
-            <input class="p-2 border border-slate-300" type="number" name="maxPrix" placeholder="Prix maximum" />
-            <input class="bg-slate-500 p-2 rounded-lg text-white font-semibold" type="submit" value="Filtrer par prix" />
+            <input
+                class="p-2 border border-slate-300"
+                type="number"
+                name="minPrix"
+                placeholder="Prix minimum"
+            />
+            <input
+                class="p-2 border border-slate-300"
+                type="number"
+                name="maxPrix"
+                placeholder="Prix maximum"
+            />
+            <input
+                class="bg-slate-500 p-2 rounded-lg text-white font-semibold"
+                type="submit"
+                value="Filtrer par prix"
+            />
         </form>
     </div>
     <div class="p-12">
@@ -44,25 +58,34 @@ if (Astro.request.method === "POST") {
         >
     </div>
     <div x-data="{ showFavorites: true, col: true }">
-        <button
-            class="p-4 bg-gray-800 ml-8 rounded-2xl text-white font-semibold"
-            @click="showFavorites = !showFavorites"
+        <div class="flex">
+            <button
+                class="p-4 bg-gray-800 ml-8 rounded-2xl text-white font-semibold"
+                @click="showFavorites = !showFavorites"
+            >
+                <span x-show="showFavorites">Afficher les favoris</span>
+                <span x-show="!showFavorites">Afficher tout</span>
+            </button>
+            <button
+                class="p-4 bg-gray-800 ml-8 rounded-2xl text-white font-semibold relative flex-row"
+                @click="col = !col"
+            >
+                <span x-show="col">Afficher en colonne</span>
+                <span x-show="!col">Afficher en liste</span>
+            </button>
+        </div>
+        <div
+            x-show="showFavorites"
+            x-transition.duration.500ms
+            class="grid grid-cols-3 gap-4"
         >
-            <span x-show="showFavorites">Afficher les favoris</span>
-            <span x-show="!showFavorites">Afficher tout</span>
-        </button>
-        <button
-            class="p-4 bg-gray-800 ml-8 rounded-2xl text-white font-semibold relative flex-row"
-            @click="col = !col"
-        >
-            <span x-show="col">Afficher en colonne</span>
-            <span x-show="!col">Afficher en liste</span>
-        </button>
-
-        <div x-show="showFavorites" x-transition.duration.500ms>
             {offres.map((offre) => <Card {...offre} />)}
         </div>
-        <div x-show="!showFavorites" x-transition.duration.500ms>
+        <div
+            x-show="!showFavorites"
+            x-transition.duration.500ms
+            class="grid grid-cols-3 gap-4"
+        >
             {offres.map((offre) => offre.Favori && <Card {...offre} />)}
         </div>
         <div class="flex justify-center">

@@ -2,20 +2,37 @@
 const { ...offre } = Astro.props;
 ---
 
-<div class="flex p-8 pb-4 pt-4">
+<div class="flex p-8 pb-4 pt-4 w-full">
     {
         (
             <ul class="p-5 border border-gray-300 rounded-lg shadow-lg font-size-xl justify-center">
-                <li>{offre.Nom}</li>
-                <li>{offre.Adresse}</li>
+                <li class="text-3xl">{offre.Nom}</li>
+                <li class="">{offre.Adresse}</li>
                 <li>{offre.id}</li>
-                <li>{offre.Nombre_de_chambres} chambres</li>
-                <li>{offre.Nombre_de_salles_de_bain} salles de bain</li>
-                <li>{offre.Superficie} m²</li>
-                <li>{offre.Prix} €</li>
-                <li class="uppercase">{offre.Favori}</li>
                 <li>
-                    <img src={offre.imageUrl} alt="" />
+                    <img
+                        class="rounded-xl w-full"
+                        src={offre.imageUrl}
+                        alt=""
+                    />
+                </li>
+                <div class="flex gap-3 justify-between items-center p-4">
+                    <li class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold">
+                        {offre.Nombre_de_chambres} chambres
+                    </li>
+                    <li class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold">
+                        {offre.Nombre_de_salles_de_bain} salles de bain
+                    </li>
+                    <li class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold">
+                        {offre.Superficie} m²
+                    </li>
+                    <li class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold">
+                        {offre.Prix} €
+                    </li>
+                </div>
+                <li class="flex uppercase">
+                    <p>Favori : </p>
+                    {offre.Favori}
                 </li>
                 <li>
                     <button
