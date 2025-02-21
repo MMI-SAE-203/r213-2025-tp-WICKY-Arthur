@@ -1,50 +1,73 @@
 ---
 const { ...offre } = Astro.props;
-import Favorite from "../../public/favorite.png";
 ---
 
-<div class="flex p-8 pb-4 pt-4 w-full">
-    {
-        (
-            <ul class="p-5 border border-gray-300 rounded-lg shadow-lg font-size-xl justify-center">
-                <li class="text-3xl">{offre.Nom}</li>
-                <li class="">{offre.Adresse}</li>
-                <li>{offre.id}</li>
-                <li>
-                    <img
-                        class="rounded-xl w-full"
-                        src={offre.imageUrl}
-                        alt=""
-                    />
-                </li>
-                <div class="flex gap-3 justify-between items-center p-4">
-                    <li class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold">
-                        {offre.Nombre_de_chambres} chambres
-                    </li>
-                    <li class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold">
-                        {offre.Nombre_de_salles_de_bain} salles de bain
-                    </li>
-                    <li class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold">
-                        {offre.Superficie} m²
-                    </li>
-                    <li class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold">
-                        {offre.Prix} €
-                    </li>
-                </div>
-                <li class="flex uppercase">
-                    <p>Favori : </p>
-                    {offre.Favori}
-                    
-                </li>
-                <li>
-                    <button
-                        class="relative p-4 mt-4 bg-slate-300 rounded-xl
+<div
+    x-data={`{favori: ${offre.favori}, clickFavori() {this.favori = !this.favori; setFavori(${JSON.stringify(offre)});}}`}
+    class="flex p-8 pb-4 pt-4 w-full"
+>
+    <ul
+        class="p-5 border border-gray-300 rounded-lg shadow-lg font-size-xl justify-center"
+    >
+        <li class="text-3xl">{offre.Nom}</li>
+        <li class="">{offre.Adresse}</li>
+        <li>{offre.id}</li>
+        <li>
+            <img
+                class="rounded-xl max-w-96 max-h-60"
+                src={offre.imageUrl}
+                alt=""
+            />
+        </li>
+        <div class="flex gap-3 justify-between items-center p-4">
+            <li
+                class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold"
+            >
+                {offre.Nombre_de_chambres} chambres
+            </li>
+            <li
+                class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold"
+            >
+                {offre.Nombre_de_salles_de_bain} salles de bain
+            </li>
+            <li
+                class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold"
+            >
+                {offre.Superficie} m²
+            </li>
+            <li
+                class="text-lg bg-indigo-500 rounded-lg p-2 text-white font-semibold"
+            >
+                {offre.Prix} €
+            </li>
+        </div>
+        <li class="flex uppercase items-center gap-2">
+            <p>Favori :</p>
+            {offre.Favori}
+            <button
+                class=" border-2 border-gray-500 rounded-xl"
+                @click="clickFavori"
+            >
+                <img
+                    :src="favori ? '/favorite_filled.png' : '/favorite.png'"
+                    alt="Favorite Icon"
+                    class="w-6 h-6"
+                />
+            </button>
+        </li>
+        <li>
+            <button
+                class="relative p-4 mt-4 bg-slate-300 rounded-xl
                         font-semibold"
-                    >
-                        <a href={`/offres/${offre.id}`}>Voir plus</a>
-                    </button>
-                </li>
-            </ul>
-        )
-    }
+            >
+                <a href={`/offres/${offre.id}`}>Voir plus</a>
+            </button>
+        </li>
+    </ul>
 </div>
+
+<script>
+    //@ts-nocheck
+    import { setFavori } from "../backend.mjs";
+    window.setFavori = setFavori;
+</script>

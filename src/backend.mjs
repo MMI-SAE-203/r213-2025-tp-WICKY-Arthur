@@ -134,3 +134,7 @@ export async function allMaisonsByAgentId(id) {
     });
     return maisonsAgent;
 }
+
+export async function setFavori(house) {
+    await pb.collection('Maison').update(house.id, { favori: !house.Favori });
+}
