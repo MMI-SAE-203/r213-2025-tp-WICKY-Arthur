@@ -1,5 +1,6 @@
 ---
 const { ...offre } = Astro.props;
+import Favorite from "../../public/favorite.png";
 ---
 
 <div class="flex p-8 pb-4 pt-4 w-full">
@@ -33,6 +34,7 @@ const { ...offre } = Astro.props;
                 <li class="flex uppercase">
                     <p>Favori : </p>
                     {offre.Favori}
+                    
                 </li>
                 <li>
                     <button
