@@ -1,0 +1,32 @@
+---
+import { getAgent } from "../../backend.mjs";
+import Base from "../../layouts/Base.astro";
+import { allMaisonsByAgentId } from "../../backend.mjs";
+import Card from "../../components/Card.astro";
+
+const { id } = Astro.params;
+const agent = await getAgent(id);
+if (!agent) {
+    return Astro.redirect("/agent");
+}
+
+let offres = [];
+offres = await allMaisonsByAgentId(id);
+const nom_complet = `${agent.Prenom_agent} ${agent.Nom_agent}`;
+---
+
+<Base titre={nom_complet}>
+    <h2 class="p-8 text-3xl pb-4 pl-9">{nom_complet}</h2>
+    <div class="flex p-8 pb-8 pt-4">
+        <ul
+            class="p-5 border border-gray-300 rounded-lg shadow-lg font-size-xl justify-center"
+        >
+            <li>Prénom : {agent.Nom_agent}</li>
+            <li>Nom : {agent.Prenom_agent}</li>
+            <li>Adresse mail : {agent.Mail_agent}</li>
+        </ul>
+    </div>
+    <div>
+        {offres.map((offre) => <Card {...offre} />)}
+    </div>
+</Base>

@@ -1,0 +1,24 @@
+---
+const { ...agent } = Astro.props;
+---
+
+<div class="flex p-8 pb-4 pt-4 w-full">
+    {
+        (
+            <div>
+                <ul class=" flex flex-col gap-3 p-5 border border-gray-300 rounded-lg shadow-lg font-size-xl justify-center max-w-full">
+                    <div class="flex items-center gap-2">
+                        <li class="text-3xl">{agent.Prenom_agent}</li>
+                        <li class="text-3xl">{agent.Nom_agent}</li>
+                    </div>
+                    <li class="">{agent.Mail_agent} </li>
+                    <li>
+                        <button class="bg-gray-200 border border-gray-300 rounded-lg p-2">
+                            <a href={`/agent/${agent.id}`}>Voir plus</a>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
+</div>

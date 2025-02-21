@@ -117,3 +117,20 @@ export async function filterByPrix(prixMin, prixMax) {
         return [];
     }
 }
+
+export async function getAgents() {
+    const agentinfo = await pb.collection('Agent').getFullList();
+    return agentinfo;
+}
+export async function getAgent(id) {
+    const agentinfo = await pb.collection('Agent').getOne(id);
+    return agentinfo;
+}
+
+export async function allMaisonsByAgentId(id) {
+    const maisonsAgent = await pb.collection('Maison').getFullList({
+        filter: `agent.id = '${id}'`,
+        expand: 'agent',
+    });
+    return maisonsAgent;
+}

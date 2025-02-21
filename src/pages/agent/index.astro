@@ -1,0 +1,29 @@
+---
+import Base from "../../layouts/Base.astro";
+import CardAgent from "../../components/CardAgent.astro";
+import { getAgents, filterByPrix } from "../../backend.mjs";
+let message = "";
+let agents = [];
+agents = await getAgents();
+---
+
+<Base titre="Agents">
+    <h1 class="p-10 font-bold text-5xl text-center uppercase text-gray-800">
+        Les Agents
+    </h1>
+
+    <div
+        x-show="showFavorites"
+        x-transition.duration.500ms
+        class="grid grid-cols-3 gap-4"
+    >
+        {agents.map((offre) => <CardAgent {...offre} />)}
+    </div>
+    <div
+        x-show="!showFavorites"
+        x-transition.duration.500ms
+        class="grid grid-cols-3 gap-4"
+    >
+        {agents.map((offre) => offre.Favori && <CardAgent {...offre} />)}
+    </div>
+</Base>
