@@ -14,7 +14,7 @@ const { ...offre } = Astro.props;
         <li>{offre.id}</li>
         <li>
             <img
-                class="rounded-xl max-w-96 max-h-60"
+                class="rounded-xl max-w-96 max-h-60 justify-self-center my-4"
                 src={offre.imageUrl}
                 alt=""
             />
@@ -45,7 +45,7 @@ const { ...offre } = Astro.props;
             <p>Favori :</p>
             {offre.Favori}
             <button
-                class=" border-2 border-gray-500 rounded-xl"
+                class="border-2 border-gray-500 rounded-xl"
                 @click="clickFavori"
             >
                 <img
